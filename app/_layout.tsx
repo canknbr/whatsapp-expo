@@ -47,11 +47,15 @@ const InitialLayout = () => {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
+
+  
   useEffect(() => {
     if (!isLoaded) return;
     const inTabsGroup = segments[0] === '(tabs)';
     if (isSignedIn && !inTabsGroup) {
       router.replace('/(tabs)/chats');
+    }else if(!isSignedIn){
+      router.replace('/');
     }
   }, [isSignedIn]);
 
@@ -62,6 +66,7 @@ const InitialLayout = () => {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen
         name="otp"
         options={{
@@ -90,3 +95,5 @@ const RootLayoutNav = () => {
     </ClerkProvider>
   );
 };
+
+export default RootLayoutNav
