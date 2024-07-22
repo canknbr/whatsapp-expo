@@ -57,7 +57,7 @@ const OtpPage = () => {
     router.push(`verify/${phoneNumber}`)
    } catch (error) {
 if(isClerkAPIResponseError(error)){
-  if(error.errors[0].code === "form_identifier?exists"){
+  if(error.errors[0].code === "form_identifier_exists"){
     console.log('user exist')
     await trySignIn()
   }else{
