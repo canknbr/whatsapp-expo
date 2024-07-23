@@ -3,8 +3,9 @@ import React from 'react';
 import { AlphabetList } from 'react-native-section-alphabet-list';
 import contacts from '@/assets/data/contacts.json';
 import Colors from '@/constants/Colors';
-const NewChatPage = () => {
-  const data = contacts.map((contact, index) => {
+
+
+export const itemData = contacts.map((contact, index) => {
     return {
       value: `${contact.first_name} ${contact.last_name}`,
       name: `${contact.first_name} ${contact.last_name}`,
@@ -13,12 +14,14 @@ const NewChatPage = () => {
       key: `${contact.first_name} ${contact.last_name}-${index}`,
     };
   });
+const NewChatPage = () => {
+
   return (
     <View
       style={{ paddingTop: 110, backgroundColor: Colors.background, flex: 1 }}
     >
       <AlphabetList
-        data={data}
+        data={itemData}
         indexLetterStyle={{
           color: Colors.primary,
           fontSize: 12,

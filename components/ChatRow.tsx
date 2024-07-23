@@ -31,7 +31,7 @@ const ChatRow: FC<IChatRowProps> = ({
 }) => {
   return (
     <AppleStyleSwipeableRow>
-    <Link href={'/(tabs)/chats'} asChild>
+    <Link href={`/(tabs)/chats/${id}`} asChild>
       <TouchableHighlight activeOpacity={0.9} underlayColor={Colors.lightGray}>
         <View
           style={{
