@@ -1,13 +1,15 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
-import { Stack, useRouter, useSegments } from 'expo-router';
+import { Link, Stack, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
 import * as SecureStore from 'expo-secure-store';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
+import Colors from '@/constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
 const tokenCache = {
   async getToken(key: string) {
     try {
@@ -53,7 +55,7 @@ const InitialLayout = () => {
     if (!isLoaded) return;
     const inTabsGroup = segments[0] === '(tabs)';
     if (isSignedIn && !inTabsGroup) {
-      router.replace('/(tabs)/calls');
+      router.replace('/(tabs)/chats');
     }else if(!isSignedIn){
       router.replace('/');
     }
@@ -67,6 +69,25 @@ const InitialLayout = () => {
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="(modal)/new-chat" options={{ presentation:'modal',
+        title:'New Chat',
+        headerTransparent:true,
+        headerBlurEffect:'regular',
+        headerStyle:{
+          backgroundColor:Colors.background
+        },
+        headerSearchBarOptions:{
+          hideWhenScrolling:false,
+          placeholder:'Search  name or number'
+        },
+        headerRight:()=>{
+          return <Link asChild href={'/(tabs)/chat'}>
+            <TouchableOpacity style={{backgroundColor:Colors.lightGray,borderRadius:20,padding:4}}>
+              <Ionicons name='close' color={Colors.gray} size={30}/>
+            </TouchableOpacity>
+          </Link>
+        }
+       }} />
       <Stack.Screen
         name="otp"
         options={{
