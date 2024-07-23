@@ -7,28 +7,27 @@ import { Ionicons } from '@expo/vector-icons';
 const CallLayout = () => {
   return (
     <Stack>
-      <Stack.Screen
-        name="index"
-        options={{
-          headerTitle: 'Calls',
-          headerLargeTitle: true,
-          headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: Colors.background,
-          },
-          headerSearchBarOptions: {
-            placeholder: 'Search',
-          },
-          headerRight: () => {
-            return (
-              <TouchableOpacity>
-                <Ionicons name='call-outline' size={24} color={Colors.primary} />
-              </TouchableOpacity>
-            );
-          },
-        }}
-      />
-    </Stack>
+    <Stack.Screen
+      name="index"
+      options={{
+        title: 'Calls',
+        headerLargeTitle: true,
+        headerTransparent: true,
+        headerBlurEffect: 'regular',
+        headerStyle: {
+          backgroundColor: Colors.background,
+        },
+        headerSearchBarOptions: {
+          placeholder: 'Search',
+        },
+        headerRight: () => (
+          <TouchableOpacity>
+            <Ionicons name="call-outline" color={Colors.primary} size={30} />
+          </TouchableOpacity>
+        ),
+      }}
+    />
+  </Stack>
   );
 };
 
